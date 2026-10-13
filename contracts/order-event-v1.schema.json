@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/contracts/order-event-v1.schema.json",
+  "title": "Order Event v1",
+  "type": "object",
+  "required": ["event_id", "event_version", "event_type", "occurred_at", "order_id", "customer_id", "amount", "currency"],
+  "properties": {
+    "event_id": {"type": "string", "minLength": 1},
+    "event_version": {"const": 1},
+    "event_type": {"enum": ["order_created", "order_updated", "order_cancelled"]},
+    "occurred_at": {"type": "string", "format": "date-time"},
+    "order_id": {"type": "string", "minLength": 1},
+    "customer_id": {"type": "string", "minLength": 1},
+    "amount": {"type": "number", "minimum": 0},
+    "currency": {"type": "string", "pattern": "^[A-Z]{3}$"}
+  },
+  "additionalProperties": false
+}
